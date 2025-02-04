@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+    background-image: url("C:\Users\DELL\Desktop\REM\real-estate-management\src\assets\background.jpg"); /* Use absolute path */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    flex-direction: column; /* Stack logo and links */
+    justify-content: center;
+    align-items: center;
+    background: rgba(245, 242, 242, 0.7); /* Semi-transparent background */
+    padding: 15px;
+    width: 100%;
+  }
+  
+  /* Center Logo */
+  .nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .nav-logo {
+    width: 120px; /* Adjust logo size */
+    height: auto;
+  }
+  
+  /* Navbar Links */
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .nav-links a, .nav-links button {
+    color: rgb(12, 16, 236);
+    text-decoration: none;
+    background: rgba(245, 2, 2, 0.1);
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .nav-links button:hover,
+  .nav-links a:hover {
+    background: rgba(3, 73, 3, 0.2);
+  }
+  .property-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .property-card {
+    border: 1px solid #12e9e9;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .property-card:hover {
+    background: #f5f5f5;
+  }
+  
+  .property-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .property-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(41, 245, 23, 0.3);
+    width: 80%;
+    max-width: 500px;
+  }
+  .home-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .home-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
