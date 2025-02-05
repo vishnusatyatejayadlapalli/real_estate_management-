@@ -10,12 +10,8 @@ export const PropertyProvider = ({ children }) => {
     getProperties().then(setProperties);
   }, []);
 
-  const addProperty = (newProperty) => {
-    setProperties((prevProperties) => [...prevProperties, { id: Date.now(), ...newProperty }]);
-  };
-
   return (
-    <PropertyContext.Provider value={{ properties, setProperties, addProperty }}>
+    <PropertyContext.Provider value={{ properties, setProperties }}>
       {children}
     </PropertyContext.Provider>
   );

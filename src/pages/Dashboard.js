@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProperties, deleteProperty } from "../services/propertyService";
+import AddPropertyForm from "../components/AddPropertyForm";
 import SearchBar from "../components/SearchBar";
 
-const SearchResults = () => {
+const Dashboard = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
 
@@ -12,6 +13,13 @@ const SearchResults = () => {
       setFilteredProperties(data);
     });
   }, []);
+
+  const handlePropertyAdded = () => {
+    getProperties().then((data) => {
+      setProperties(data);
+      setFilteredProperties(data);
+    });
+  };
 
   const handleDelete = (id) => {
     deleteProperty(id).then(() => {
@@ -37,8 +45,9 @@ const SearchResults = () => {
 
   return (
     <div>
-      <h1>Search Properties</h1>
+      <h1>Admin Dashboard</h1>
       <SearchBar onSearch={handleSearch} />
+      <AddPropertyForm onPropertyAdded={handlePropertyAdded} />
 
       <table border="1">
         <thead>
@@ -69,4 +78,4 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export default Dashboard;

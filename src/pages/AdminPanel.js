@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { PropertyContext } from "../context/PropertyContext";
-import AddPropertyForm from "../components/AddPropertyForm";
+import PropertyList from "../components/PropertyList";
 
 const AdminPanel = () => {
-  const { addProperty } = useContext(PropertyContext);
+  const { properties, addProperty, editProperty } = useContext(PropertyContext);
 
   return (
     <div>
       <h1>Admin Panel</h1>
-      <AddPropertyForm handleAddProperty={addProperty} />
+      <PropertyList properties={properties} handleEditProperty={editProperty} />
     </div>
   );
 };

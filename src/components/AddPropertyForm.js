@@ -1,35 +1,66 @@
 import { useState } from "react";
+import { addProperty } from "../services/propertyService";
 
-const AddPropertyForm = ({ handleAddProperty }) => {
-  const [formData, setFormData] = useState({
-    name: "",
+const AddPropertyForm = ({ onPropertyAdded }) => {  // ✅ Ensure the function is received as a prop
+  const [property, setProperty] = useState({
+    title: "",
     location: "",
     price: "",
-    type: "",
-    image: "",
+    image: null,
+    imagePreview: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setProperty({ ...property, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProperty({ ...property, image: file, imagePreview: imageUrl });
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!handleAddProperty) {
-      console.error("handleAddProperty is not defined!");
+    if (!property.image) {
+      alert("Please upload an image.");
       return;
     }
-    handleAddProperty(formData);
-    setFormData({ name: "", location: "", price: "", type: "", image: "" });
+
+    const newProperty = {
+      title: property.title,
+      location: property.location,
+      price: property.price,
+      image: property.imagePreview,
+    };
+
+    await addProperty(newProperty);
+    
+    // ✅ Ensure function exists before calling it
+    if (typeof onPropertyAdded === "function") {
+      onPropertyAdded();
+    }
+
+    setProperty({ title: "", location: "", price: "", image: null, imagePreview: "" });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="name" placeholder="Property Name" value={formData.name} onChange={handleChange} required />
-      <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required />
-      <input type="text" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
-      <input type="text" name="type" placeholder="Type (apartment, villa, etc.)" value={formData.type} onChange={handleChange} required />
-      <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} />
+      <h2>Add Property</h2>
+      <input type="text" name="title" placeholder="Title" value={property.title} onChange={handleChange} required />
+      <input type="text" name="location" placeholder="Location" value={property.location} onChange={handleChange} required />
+      <input type="text" name="price" placeholder="Price" value={property.price} onChange={handleChange} required />
+      <input type="file" accept="image/*" onChange={handleImageUpload} required />
+
+      {property.imagePreview && (
+        <div>
+          <p>Image Preview:</p>
+          <img src={property.imagePreview} alt="Preview" width="100" />
+        </div>
+      )}
+
       <button type="submit">Add Property</button>
     </form>
   );
