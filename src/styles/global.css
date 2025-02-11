@@ -15,7 +15,7 @@ body {
     flex-direction: column; /* Stack logo and links */
     justify-content: center;
     align-items: center;
-    background: rgba(245, 242, 242, 0.7); /* Semi-transparent background */
+    background: rgba(245, 242, 242, 0); /* Semi-transparent background */
     padding: 15px;
     width: 100%;
   }
@@ -41,7 +41,7 @@ body {
   }
   
   .nav-links a, .nav-links button {
-    color: rgb(12, 16, 236);
+    color: rgb(82, 119, 131);
     text-decoration: none;
     background: rgba(245, 2, 2, 0.1);
     padding: 8px 15px;
@@ -52,7 +52,7 @@ body {
   
   .nav-links button:hover,
   .nav-links a:hover {
-    background: rgba(3, 73, 3, 0.2);
+    background: rgba(52, 255, 52, 0.384);
   }
   .property-list {
     display: flex;

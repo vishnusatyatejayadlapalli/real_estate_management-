@@ -1,18 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import { PropertyProvider } from "./context/PropertyContext";
-import "./styles/global.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import { AuthProvider } from './context/AuthContext';
+import { PropertyProvider } from './context/PropertyContext';
+import './styles/global.css';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <AuthProvider>
-      <PropertyProvider>
-        <App />
-      </PropertyProvider>
-    </AuthProvider>
-  </BrowserRouter>
+    <BrowserRouter>  {/* Ensure this is the only BrowserRouter */}
+        <AuthProvider>
+            <PropertyProvider>
+                <App />
+            </PropertyProvider>
+        </AuthProvider>
+    </BrowserRouter>
 );
