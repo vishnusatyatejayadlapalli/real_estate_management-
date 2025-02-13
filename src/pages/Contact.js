@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
   // Handle input changes
   const handleChange = (e) => {
@@ -18,7 +20,7 @@ function ContactForm() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px", textAlign: "center" }}>
       <h2>Contact Us</h2>
       {submitted ? (
         <p style={{ color: "green" }}>Thank you! Your message has been sent.</p>
@@ -59,6 +61,22 @@ function ContactForm() {
           </button>
         </form>
       )}
+
+      {/* Go to Home Button */}
+      <button 
+        onClick={() => navigate("/")} 
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          background: "#28a745",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer"
+        }}
+      >
+        Go to Home
+      </button>
     </div>
   );
 }

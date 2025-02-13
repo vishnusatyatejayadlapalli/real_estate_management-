@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getProperties, deleteProperty } from "../services/propertyService";
 import SearchBar from "../components/SearchBar";
 
 const SearchResults = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
+  const navigate = useNavigate(); // Hook to navigate between pages
 
   useEffect(() => {
     getProperties().then((data) => {
@@ -53,18 +55,25 @@ const SearchResults = () => {
         <tbody>
           {filteredProperties.map((property) => (
             <tr key={property.id}>
-              <td><img src={property.image} alt={property.title} width="100" /></td>
+              <td>
+                <img src={property.image} alt={property.title} width="100" />
+              </td>
               <td>{property.title}</td>
               <td>{property.location}</td>
               <td>{property.price}</td>
               <td>
-                <button onClick={() => alert("Edit functionality pending")}>Edit</button>
+                <button onClick={() => alert("Edit functionality pending")}>
+                  Edit
+                </button>
                 <button onClick={() => handleDelete(property.id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* "Go to Home" Button */}
+      <button onClick={() => navigate("/")}>Go to Home</button>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import WishlistPage from './pages/WishlistPage';
 import AdminPanel from './pages/AdminPanel';
+import Contact from './pages/Contact'; // Import Contact Page
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/wishlist" element={<WishlistPage />} />
                 <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/contact" element={<Contact />} /> {/* Contact Page Route */}
             </Routes>
             <Footer />
         </div>

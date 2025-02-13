@@ -10,7 +10,7 @@
   
   .overlay {
     text-align: center;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+    background: rgba(10, 224, 28, 0.5); /* Dark overlay for readability */
     padding: 20px;
     border-radius: 10px;
     color: white;
@@ -18,7 +18,7 @@
   
   .logo {
     width: 150px;  /* Adjust size as needed */
-    height: auto;
+    height: center;
     margin-bottom: 20px;
   }
   

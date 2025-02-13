@@ -4,21 +4,21 @@ export const properties = [
     title: "Luxury Villa",
     location: "Los Angeles, CA",
     price: "$1,200,000",
-    image: "/images/villa.jpg",
+    image: "/assets/villa.jpg",
   },
   {
     id: 2,
     title: "Modern Apartment",
     location: "New York, NY",
     price: "$850,000",
-    image: "/images/apartment.jpg",
+    image: "/assets/apartment.jpg",
   },
   {
     id: 3,
     title: "Cozy Cottage",
     location: "San Francisco, CA",
     price: "$600,000",
-    image: "/images/cottage.jpg",
+    image: "/assets/cottage.jpg",
   },
 ];
 

@@ -16,7 +16,7 @@ const PropertyDetails = () => {
       price: "$500,000",
       location: "New York, NY",
       description: "A beautiful luxury apartment with stunning views.",
-      image: "/assets/property1.jpg",
+      image: "/assets/apartment.jpg",
     };
 
     setProperty(fetchedProperty);
