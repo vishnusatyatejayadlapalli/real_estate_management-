@@ -23,7 +23,7 @@ function ContactForm() {
     <div style={{ maxWidth: "400px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px", textAlign: "center" }}>
       <h2>Contact Us</h2>
       {submitted ? (
-        <p style={{ color: "green" }}>Thank you! Your message has been sent.</p>
+        <p style={{ color: "yellow" }}>Thank you! Your message has been sent.</p>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>Name:</label>

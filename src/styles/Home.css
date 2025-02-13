@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background: url("../assets/background.jpg") no-repeat center center/cover;
+    /*background: url("../assets/background.jpg") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +17,9 @@
   }
   
   .logo {
-    width: 150px;  /* Adjust size as needed */
-    height: center;
-    margin-bottom: 20px;
+    width: 10px;  /* Adjust size as needed */
+    height: bottom;
+    margin-bottom: 40px;
   }
   
   

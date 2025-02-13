@@ -23,4 +23,4 @@ const Home = ({ setPage }) => {
     );
 };
 
-export default Home;
+export default Home ;
