@@ -1,81 +1,73 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
+import { PropertyContext } from "../context/PropertyContext";
+import { useNavigate } from "react-router-dom";
 
-function AddProperty({ onPropertyAdded }) {
-  const [property, setProperty] = useState({
+const AddProperty = () => {
+  const { addProperty } = useContext(PropertyContext);
+  const navigate = useNavigate();
+  const [propertyData, setPropertyData] = useState({
     title: "",
     location: "",
     price: "",
     image: "",
   });
 
-  // Handle input change
   const handleChange = (e) => {
-    setProperty({ ...property, [e.target.name]: e.target.value });
+    setPropertyData({ ...propertyData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validate input
-    if (!property.title || !property.location || !property.price) {
-      alert("Please fill all fields.");
-      return;
-    }
-
-    // Pass property data to parent component
-    if (onPropertyAdded) {
-      onPropertyAdded(property);
-    }
-
-    // Reset form
-    setProperty({ title: "", location: "", price: "", image: "" });
+    addProperty(propertyData);
+    navigate("/search"); // Redirect to Search Properties page
   };
 
   return (
-    <div>
-      <h2>Add New Property</h2>
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
+      <h2>Add Property</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title:</label>
         <input
           type="text"
           name="title"
-          value={property.title}
+          placeholder="Property Title"
+          value={propertyData.title}
           onChange={handleChange}
           required
+          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
         />
-
-        <label>Location:</label>
         <input
           type="text"
           name="location"
-          value={property.location}
+          placeholder="Location"
+          value={propertyData.location}
           onChange={handleChange}
           required
+          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
         />
-
-        <label>Price:</label>
         <input
-          type="number"
+          type="text"
           name="price"
-          value={property.price}
+          placeholder="Price"
+          value={propertyData.price}
           onChange={handleChange}
           required
+          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
         />
-
-        <label>Image URL:</label>
         <input
           type="text"
           name="image"
-          value={property.image}
+          placeholder="Image URL"
+          value={propertyData.image}
           onChange={handleChange}
-          placeholder="Enter Image URL"
+          required
+          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
         />
-
-        <button type="submit">Add Property</button>
+        <button type="submit" style={{ width: "100%", padding: "10px", background: "#28a745", color: "white", border: "none", cursor: "pointer" }}>
+          Add Property
+        </button>
       </form>
     </div>
   );
-}
+};
 
 export default AddProperty;

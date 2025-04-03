@@ -12,7 +12,7 @@ const PropertyDetails = () => {
     // Simulating fetching property details from a database
     const fetchedProperty = {
       id,
-      name: "Luxury Apartment",
+      name: "luxury Apartment",
       price: "$500,000",
       location: "New York, NY",
       description: "A beautiful luxury apartment with stunning views.",

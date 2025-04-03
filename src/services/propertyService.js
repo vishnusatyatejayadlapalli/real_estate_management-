@@ -20,6 +20,13 @@ export const properties = [
     price: "$600,000",
     image: "/assets/cottage.jpg",
   },
+  {
+    id: 4,
+    title: "beach view apartment",
+    location: "San Francisco, CA",
+    price: "$4500/month",
+    image: "/assets/cottage.jpg",
+  },
 ];
 
 export const getProperties = () => Promise.resolve(properties);

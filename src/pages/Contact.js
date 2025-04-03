@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "../assets/background1.jpg"; // Import the image from assets
 
 function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -20,63 +21,94 @@ function ContactForm() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px", textAlign: "center" }}>
-      <h2>Contact Us</h2>
-      {submitted ? (
-        <p style={{ color: "yellow" }}>Thank you! Your message has been sent.</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
-          />
-
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
-          />
-
-          <label>Message:</label>
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows="4"
-            style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
-          ></textarea>
-
-          <button type="submit" style={{ width: "100%", padding: "10px", background: "#007bff", color: "#fff", border: "none", borderRadius: "5px" }}>
-            Submit
-          </button>
-        </form>
-      )}
-
-      {/* Go to Home Button */}
-      <button 
-        onClick={() => navigate("/")} 
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`, // Use imported image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
         style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          background: "#28a745",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer"
+          maxWidth: "400px",
+          margin: "auto",
+          padding: "20px",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          borderRadius: "8px",
+          textAlign: "center",
         }}
       >
-        Go to Home
-      </button>
+        <h2>Contact Us</h2>
+        {submitted ? (
+          <p style={{ color: "green" }}>Thank you! Your message has been sent.</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
+            />
+
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
+            />
+
+            <label>Message:</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows="4"
+              style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
+            ></textarea>
+
+            <button
+              type="submit"
+              style={{
+                width: "100%",
+                padding: "10px",
+                background: "#007bff",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+              }}
+            >
+              Submit
+            </button>
+          </form>
+        )}
+
+        {/* Go to Home Button */}
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            marginTop: "20px",
+            padding: "10px 20px",
+            background: "#28a745",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Go to Home
+        </button>
+      </div>
     </div>
   );
 }

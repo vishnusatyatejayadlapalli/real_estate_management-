@@ -8,7 +8,7 @@ import './styles/global.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter>  {/* Ensure this is the only BrowserRouter */}
+    <BrowserRouter>
         <AuthProvider>
             <PropertyProvider>
                 <App />
