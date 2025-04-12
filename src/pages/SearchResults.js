@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import villaImage from "../assets/villa.jpg"; // Import images from assets
 import apartmentImage from "../assets/apartment.jpg";
 import beachHouseImage from "../assets/beach-house.jpg";
-
+import farmhouseImage from "../assets/farmhouse.jpg";
 const SearchResults = () => {
   const { properties, setProperties } = useContext(PropertyContext);
   const [filteredProperties, setFilteredProperties] = useState(properties);
@@ -17,7 +17,8 @@ const SearchResults = () => {
       const sampleProperties = [
         { id: 1, title: "Luxury Villa", location: "Los Angeles", price: "$2,200,000", image: villaImage },
         { id: 2, title: "Modern Apartment", location: "New York", price: "$800,000", image: apartmentImage },
-        { id: 3, title: "Beach House", location: "Miami", price: "$1,500,000", image: beachHouseImage }
+        { id: 3, title: "Beach House", location: "Miami", price: "$1,500,000", image: beachHouseImage },
+        { id: 4, title: "building", location: "Chicago", price: "$1,000,000", image: farmhouseImage },
       ];
       setProperties(sampleProperties);
     }
