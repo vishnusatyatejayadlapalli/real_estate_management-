@@ -32,7 +32,7 @@ const styles = {
     textAlign: "center",
     background: "#f8f9fa",
     borderRadius: "10px",
-    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+    boxShadow: "0px 0px 10px rgb(241, 20, 20)",
   },
   buttonContainer: {
     marginTop: "20px",
@@ -40,7 +40,7 @@ const styles = {
   button: {
     margin: "10px",
     padding: "10px 15px",
-    background: "#007bff",
+    background: "#28a745",
     color: "#fff",
     border: "none",
     borderRadius: "5px",

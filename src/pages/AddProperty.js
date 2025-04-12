@@ -1,73 +1,129 @@
-import { useState, useContext } from "react";
-import { PropertyContext } from "../context/PropertyContext";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 const AddProperty = () => {
-  const { addProperty } = useContext(PropertyContext);
-  const navigate = useNavigate();
   const [propertyData, setPropertyData] = useState({
     title: "",
     location: "",
     price: "",
-    image: "",
+    image: null,
   });
+  const [preview, setPreview] = useState(null);
 
   const handleChange = (e) => {
-    setPropertyData({ ...propertyData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setPropertyData({ ...propertyData, [name]: value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPropertyData({ ...propertyData, image: file });
+      setPreview(URL.createObjectURL(file)); // Create preview URL
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProperty(propertyData);
-    navigate("/search"); // Redirect to Search Properties page
+    console.log("Property Submitted:", propertyData);
+    alert("Property added successfully!");
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
+    <div style={styles.container}>
       <h2>Add Property</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label>Title:</label>
         <input
           type="text"
           name="title"
-          placeholder="Property Title"
           value={propertyData.title}
           onChange={handleChange}
           required
-          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={styles.input}
         />
+
+        <label>Location:</label>
         <input
           type="text"
           name="location"
-          placeholder="Location"
           value={propertyData.location}
           onChange={handleChange}
           required
-          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={styles.input}
         />
+
+        <label>Price:</label>
         <input
           type="text"
           name="price"
-          placeholder="Price"
           value={propertyData.price}
           onChange={handleChange}
           required
-          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={styles.input}
         />
+
+        <label>Upload Image:</label>
         <input
-          type="text"
-          name="image"
-          placeholder="Image URL"
-          value={propertyData.image}
-          onChange={handleChange}
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
           required
-          style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={styles.fileInput}
         />
-        <button type="submit" style={{ width: "100%", padding: "10px", background: "#28a745", color: "white", border: "none", cursor: "pointer" }}>
+
+        {preview && (
+          <div>
+            <p>Image Preview:</p>
+            <img src={preview} alt="Preview" style={styles.previewImage} />
+          </div>
+        )}
+
+        <button type="submit" style={styles.button}>
           Add Property
         </button>
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    maxWidth: "500px",
+    margin: "auto",
+    padding: "20px",
+    textAlign: "center",
+    background: "#f8f9fa",
+    borderRadius: "10px",
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  input: {
+    padding: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    width: "100%",
+  },
+  fileInput: {
+    margin: "10px 0",
+  },
+  previewImage: {
+    width: "100%",
+    maxHeight: "200px",
+    objectFit: "cover",
+    borderRadius: "5px",
+  },
+  button: {
+    padding: "10px",
+    background: "#007bff",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
 };
 
 export default AddProperty;
