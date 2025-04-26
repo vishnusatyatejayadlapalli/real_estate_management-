@@ -4,77 +4,117 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // Default role is 'user'
+  const [role, setRole] = useState("user");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+
     if (role === "user") {
-      navigate("/user-dashboard"); // Redirect to User Dashboard
+      navigate("/user-dashboard");
     } else if (role === "seller") {
-      navigate("/seller-dashboard"); // Redirect to Seller Dashboard
+      navigate("/seller-dashboard");
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
+    <div style={styles.wrapper}>
+      <div style={styles.card}>
+        <h2 style={styles.title}>Welcome Back 👋</h2>
+        <p style={styles.subtitle}>Please login to your account</p>
+        <form onSubmit={handleLogin} style={styles.form}>
+          <label style={styles.label}>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={styles.input}
+            placeholder="example@domain.com"
+          />
 
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
+          <label style={styles.label}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={styles.input}
+            placeholder="Enter your password"
+          />
 
-        <label>Role:</label>
-        <select value={role} onChange={(e) => setRole(e.target.value)} style={styles.input}>
-          <option value="user">User</option>
-          <option value="seller">Seller</option>
-        </select>
+          <label style={styles.label}>Login As</label>
+          <select value={role} onChange={(e) => setRole(e.target.value)} style={styles.select}>
+            <option value="user">User</option>
+            <option value="seller">Seller</option>
+          </select>
 
-        <button type="submit" style={styles.button}>Login</button>
-      </form>
+          <button type="submit" style={styles.button}>Login</button>
+        </form>
+      </div>
     </div>
   );
 };
 
 const styles = {
-  container: {
+  wrapper: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(135deg, #6e8efb, #a777e3)"
+  },
+  card: {
+    background: "#fff",
+    borderRadius: "12px",
+    padding: "40px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+    width: "100%",
     maxWidth: "400px",
-    margin: "auto",
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    textAlign: "center",
-    background: "#f8f9fa",
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.1)"
+    textAlign: "center"
+  },
+  title: {
+    marginBottom: "10px",
+    color: "#333",
+    fontSize: "24px"
+  },
+  subtitle: {
+    marginBottom: "30px",
+    fontSize: "14px",
+    color: "#777"
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px"
+  },
+  label: {
+    textAlign: "left",
+    fontSize: "14px",
+    color: "#444"
   },
   input: {
-    width: "100%",
-    marginBottom: "10px",
-    padding: "8px"
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    fontSize: "14px"
+  },
+  select: {
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    fontSize: "14px"
   },
   button: {
-    width: "100%",
-    padding: "10px",
-    background: "#007bff",
+    padding: "12px",
+    background: "#6e8efb",
     color: "#fff",
     border: "none",
-    borderRadius: "5px",
-    cursor: "pointer"
+    borderRadius: "8px",
+    fontWeight: "bold",
+    fontSize: "15px",
+    cursor: "pointer",
+    transition: "background 0.3s ease",
   }
 };
 
