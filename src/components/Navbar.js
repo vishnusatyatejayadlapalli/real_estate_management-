@@ -1,14 +1,83 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-function Navbar({ setPage }) {
+function Navbar() {
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
+
+  const navStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1rem 2rem",
+    background: "#333",
+    color: "white"
+  };
+
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none",
+    padding: "0.5rem 1rem",
+    borderRadius: "4px",
+    transition: "background-color 0.3s"
+  };
+
+  const buttonStyle = {
+    ...linkStyle,
+    border: "none",
+    background: "none",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontFamily: "inherit"
+  };
+
+  const activeStyle = {
+    ...linkStyle,
+    backgroundColor: "rgba(255, 255, 255, 0.1)"
+  };
+
   return (
-    <nav style={{ display: "flex", justifyContent: "space-around", padding: "10px", background: "#333", color: "white" }}>
-      <Link to="/" onClick={() => setPage("home")} style={{ color: "white", textDecoration: "none" }}>Home</Link>
-      <Link to="/contact" onClick={() => setPage("contact")} style={{ color: "white", textDecoration: "none" }}>Contact</Link>
-      <Link to="/Login" onClick={() => setPage("Login")} style={{ color: "white", textDecoration: "none" }}>Login</Link>
-      <Link to="/" onClick={() => setPage("Wishlist")} style={{ color: "white", textDecoration: "none" }}>Wishlist</Link>
-      <Link to="/Register" onClick={() => setPage("Register")} style={{ color: "white", textDecoration: "none" }}>Register</Link>
+    <nav style={navStyle}>
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <Link to="/" style={linkStyle}>Home</Link>
+        <Link to="/search" style={linkStyle}>Search</Link>
+        <Link to="/contact" style={linkStyle}>Contact</Link>
+      </div>
+
+      <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+        {currentUser ? (
+          <>
+            <Link to="/wishlist" style={linkStyle}>Wishlist</Link>
+            <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
+            {currentUser.email && (
+              <span style={{ marginRight: "1rem" }}>
+                {currentUser.email}
+              </span>
+            )}
+            <button
+              onClick={handleLogout}
+              style={buttonStyle}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" style={linkStyle}>Login</Link>
+            <Link to="/signup" style={linkStyle}>Sign Up</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }

@@ -4,6 +4,7 @@ import { register } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/background3.jpg";
 
+
 const Register = () => {
   const { setUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({ 
